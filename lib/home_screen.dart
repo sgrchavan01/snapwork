@@ -75,9 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView.separated(
                       shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
+                        return InkWell(
                           onTap: () {
-                            Get.to(EventDetailsScreen());
+                            String date =
+                                '${homeCtrl.currentMonthList[index].day.toString()}-${homeCtrl.selectedMonth}-${homeCtrl.selectedYear}';
+                            Get.to(EventDetailsScreen(date));
                           },
                           child: listChild(index),
                         );
@@ -133,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "14:00 1-Feb-2016",
+                    "",
                     style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.w400,
@@ -143,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 10,
                   ),
                   Text(
-                    "Machine Test Start",
+                    "",
                     style: TextStyle(
                         color: Colors.black87,
                         fontWeight: FontWeight.w500,
