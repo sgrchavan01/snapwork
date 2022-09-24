@@ -7,6 +7,8 @@ import 'package:snapwork/dbController/DatabaseHelper.dart';
 import 'controller/home_sontroller.dart';
 
 class EventDetailsScreen extends StatefulWidget {
+  String dateString;
+  EventDetailsScreen(this.dateString);
   @override
   State<StatefulWidget> createState() {
     return _EventDetailsScreenState();
@@ -52,20 +54,22 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             snackPosition: SnackPosition.BOTTOM,
                           );
                         } else {
-                          Todo todo = Todo(
-                              homeCtrl.titleController.text,
-                              DateFormat.yMMMd().format(DateTime.now()),
-                              homeCtrl.descpController.text);
-                          int? result; // Case 2: Insert Operation
-                          result = await helper.insertTodo(todo);
-
-                          if (result != 0) {
-                            // Success
-                            Get.snackbar('Status', 'Todo Saved Successfully');
-                          } else {
-                            // Failure
-                            Get.snackbar('Status', 'Problem Saving Todo');
-                          }
+                          // Todo todo = Todo(
+                          //     homeCtrl.titleController.text,
+                          //     DateFormat.yMMMd().format(DateTime.now()),
+                          //     homeCtrl.descpController.text);
+                          // int? result; // Case 2: Insert Operation
+                          // result = await helper.insertTodo(todo);
+                          //
+                          // if (result != 0) {
+                          //   // Success
+                          //   Get.snackbar('Status', 'Todo Saved Successfully');
+                          // } else {
+                          //   // Failure
+                          //   Get.snackbar('Status', 'Problem Saving Todo');
+                          // }
+                          //Get.snackbar('Status', 'Todo Saved Successfully',snackPosition: SnackPosition.BOTTOM,);
+                          Get.back();
                         }
                       },
                       child: Text(
@@ -105,7 +109,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       Flexible(
                           fit: FlexFit.tight,
                           child: Text(
-                            "1-Feb-2016",
+                            widget.dateString,
                             style: TextStyle(
                                 color: Colors.black87,
                                 fontWeight: FontWeight.w700,
